@@ -1,6 +1,5 @@
+LIBS = -lenet
+GCC = gcc
+LUA_LIB = /home/vagrant/skynet/3rd/lua 
 enet.so: enet.c
-	luarocks make --local enet-dev-1.rockspec
-
-enet.dll: enet.c
-	gcc -O2 -shared -o $@ $< -lenet -llua5.1 -lws2_32 -lwinmm
-
+	$(GCC) -o $@ -fpic -shared -I$(LUA_LIB) $< $(LIBS)	
